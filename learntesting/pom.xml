@@ -15,8 +15,10 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
+		<sonar.projectKey>Myfirstproject</sonar.projectKey>
+		<sonar.projectName>Myfirstproject</sonar.projectName>
 		<sonar.host.url>http://localhost:9000</sonar.host.url>
-		<sonar.login>sqp_dfa84140235d5a28d7c2ef50306a9f5dc3aa428a</sonar.login>
+		<sonar.login>sqp_35a08140dd49313c60261894f2b6f45d05d528ea</sonar.login>
 		<sonar.scm.provider>git</sonar.scm.provider>
 	</properties>
 	<dependencies>
@@ -44,6 +46,13 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>org.sonarsource.scanner.maven</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>3.9.1.2184</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -138,11 +147,26 @@
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
-				<version>3.7.0.1746</version>
+				<version>3.9.1.2184</version>
 			</plugin>
 
 
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- Optional URL to server. Default value is http://localhost:9000 -->
+				<sonar.host.url>
+					http://localhost:9000
+				</sonar.host.url>
+				<checkstyle.failOnViolation>false</checkstyle.failOnViolation>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

@@ -18,6 +18,10 @@ public class StudentService {
     public void addStudent(Student student) {
         Boolean existsEmail = studentRepository
                 .selectExistsEmail(student.getEmail());
+        if(existsEmail){
+            throw new RuntimeException("Email"+student.getEmail()+"already taken");
+        }
+
 
         studentRepository.save(student);
     }
